@@ -27,6 +27,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Ruta para mostrar la pgaina de los productos
 Route::get('/products/{id}', 'ProductController@show');
 
+// Ruta para mostrar la pagina de las Categorias
+Route::get('/categories/{category}', 'CategoryController@show');
+
 
 // Definimos la ruta para el carrito de compras 
 Route::post('/cart', 'CartDetailController@store');
@@ -82,6 +85,14 @@ Route::post('/products/{id}/images', 'ImageController@store'); // Registrar
 Route::delete('/products/{id}/images' ,'ImageController@destroy'); // Formulario para Eliminar
 // Ruta para destacar imagen del producto 
 Route::get('/products/{id}/images/select/{image}' ,'ImageController@select'); // Seleccionar Iamgen Destacada
+
+// Creamos las rutas para administrar las categorias
+Route::get('/categories', 'CategoryController@index'); // Mostrar, el listado de los productos-.
+Route::get('/categories/create', 'CategoryController@create'); // Mostrara un formulario para Crear Nuevos productos
+Route::post('/categories', 'CategoryController@store'); // Permitira  registrar los datos cargados en el formulario
+Route::get('/categories/{category}/edit', 'CategoryController@edit'); // Formulario de Edición
+Route::post('/categories/{category}/edit', 'CategoryController@update'); // Actualizar los Datos
+Route::delete('/categories/{category}', 'CategoryController@destroy'); // Formulario para Eliminar
 
 });
 

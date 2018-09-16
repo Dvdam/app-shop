@@ -88,44 +88,29 @@
         </div>
       </div>
       <div class="section text-center">
-        <h2 class="title">Productos Disponible</h2>
+        <h2 class="title">Visia Nuestra Colección de Categorías</h2>
         <div class="team">
           <div class="row">
-            @foreach ($products as $product)
+            @foreach ($categories as $category)
             <div class="col-md-4">
               <div class="team-player">
                 <div class="card card-plain">
                   <div class="col-md-6 ml-auto mr-auto">
-                    <img src="{{ $product->featured_image_url }}" alt="{{ $product->name}}" class="img-raised rounded-circle img-fluid">
+                    <img src="{{ $category->featured_image_url }}" alt="Categoria {{ $category->name}}" class="img-raised rounded-circle img-fluid">
                   </div>
                   <h4 class="card-title">
-                    <a href="{{ url('/products/'.$product->id) }}">{{ $product->name}}</a>
-                    <br>
-                    <small class="card-description text-muted">{{ $product->category->name}}</small>
+                    <a href="{{ url('/categories/'.$category->id) }}">{{ $category->name }}</a>
                   </h4>
                   <div class="card-body">
-                    <p class="card-description">{{ $product->description }}</p>
+                    <p class="card-description">{{ $category->description }}</p>
                   </div>
-
- <!--                  <div class="card-footer justify-content-center">
-                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
-                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
-                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
-                  </div> -->
                 </div>
               </div>
             </div>
             @endforeach
           </div>
 
-            <!-- Creamos un div para mostarr la paginacion -->
-            <div class="row">
-              <div class="ml-auto mr-auto">
-              {{ $products->links() }}
-              </div>
-              
-            </div>
-            <!-- Termina el div creado apra mostrar la paginacion -->
+
 
         </div>
       </div>

@@ -28,4 +28,13 @@ class Product extends Model
         //Si no existe ninguna imagen mostrmos la imgen por default
         return '/images/products/default.png';
     }
+    
+    public function getCategoryNameAttribute()
+    {
+        if ($this->category)
+            return $this->category->name;
+        return 'General';
+
+    }
+
 }

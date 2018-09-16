@@ -39,10 +39,32 @@
                 </div>
               </div>
            </div>
-            <div class="form-group bmd-form-group text-left">
-              <label class="bmd-label-floating">Descripción Breve</label>
-              <input type="text" class="form-control" name="description" value="{{ old('description' , $product->description) }}">
-            </div>
+           <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group bmd-form-group text-left">
+                  <label class="bmd-label-floating">Descripción Breve</label>
+                  <input type="text" class="form-control" name="description" value="{{ old('description' , $product->description) }}">
+                </div>
+              </div>
+              <div class="col-sm-6">
+              <div class="form-group bmd-form-group text-left">
+                <label class="control-label">Categoría del Producto</label>
+                <select class="selectpicker" name="category_id" data-style="btn btn-primary btn-round">
+                  <option value="0">General</option>
+                  @foreach ($categories as $category)
+                  <option value="{{ $category->id }}" 
+                    @if($category->id == old('category->id', $product->category_id)) selected @endif>
+                    {{ $category->name }}</option>
+                  @endforeach
+                </select>
+
+              </div>
+              </div>
+           </div>
+
+
+
+
           <textarea class="form-control" placeholder="Descripción Completa del Producto" rows="5" name="long_description">{{ old('long_description' , $product->long_description) }}</textarea>
           <button class="btn btn-primary">Guardar Cambios</button>
           <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>

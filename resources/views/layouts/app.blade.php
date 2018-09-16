@@ -66,6 +66,7 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
                   @if (auth()->user()->admin)
+                  <a class="dropdown-item" href="{{ url('admin/categories') }}">Gestionar Categorías</a>
                   <a class="dropdown-item" href="{{ url('admin/products') }}">Gestionar Productos</a>
                   @endif
                   <a class="dropdown-item" href="{{ route('logout') }}"

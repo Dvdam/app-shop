@@ -32,55 +32,25 @@
                         <td class="text-center">{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
-                        <td>{{ $product->category ? $product->category->name : 'General' }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td class="text-center">$ {{ $product->price }}</td>
                         <td class="td-actions text-center">
-<!--                             <a href="#" rel="tooltip" title="Ver Producto" class="btn btn-info btn-round">
-                                <i class="material-icons">info</i>
-                            </a>
-                            <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-round">
-                                <i class="material-icons">edit</i>
-                            </a> -->
-<!--                             <a href="{{ url('/admin/products/{id}/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success  btn-simple btn-xs">
-                                <i class="material-icons">edit</i>
-                            </a> -->
-                            <!-- <form method="post" action="{{ url('/admin/products/'.$product->id.'/delete') }}"> -->
                             <form method="post" action="{{ url('/admin/products/'.$product->id) }}">
                               @method('DELETE')
                               @csrf
-                              <!-- <input type="hidden" name="_method" value="DELETE"> -->
-<!--                               <a href="#" rel="tooltip" title="Ver Producto" class="btn btn-info btn-round">
-                                  <i class="material-icons">info</i>
-                              </a>
- -->
-                              <a class="btn btn-info btn-fab btn-fab-mini btn-round" href="#" rel="tooltip" title="Ver Producto">
+                              <a class="btn btn-info btn-fab btn-fab-mini btn-round" href="{{ url('/products/'.$product->id)}}" target="_blank" rel="tooltip" title="Ver Producto">
                                 <i class="material-icons">info</i>
                               </a>
 
                               <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-fab btn-fab-mini btn-round">
                                 <i class="material-icons">edit</i>
                               </a>
-
-
-<!--                               <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-round">
-                                  <i class="material-icons">edit</i>
-                              </a> -->
-
                               <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del Producto" class="btn btn-warning btn-fab btn-fab-mini btn-round">
                                 <i class="material-icons">image</i>
                               </a>
-
-<!--                               <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del Producto" class="btn btn-warning btn-round">
-                                  <i class="material-icons">image</i>
-                              </a> -->
                               <button type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round" rel="tooltip" title="Eliminar">
                                 <i class="material-icons">close</i>
                               </button>
-
-
-
-
-
                             </form>
                         </td>
                     </tr>
