@@ -172,28 +172,24 @@
           <div class="col-md-8 ml-auto mr-auto">
             <h2 class="text-center title">¿Aún no te Registraste?</h2>
             <h4 class="text-center description">Regístrate ingresando tus datos básicos y podrás realizar tus pedios a través de nuestro carrito de compras. Si aún no te decidis, de todas formas, con tu cuenta de usuario podrás hacer todas tus consultas sin compromiso.</h4>
-            <form class="contact-form">
+            <form class="contact-form" method="get" action="{{ url('/register')}}">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Nombre</label>
-                    <input type="email" class="form-control">
+                    <input type="text" class="form-control" name="name">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Email</label>
-                    <input type="email" class="form-control">
+                    <input type="email" class="form-control" name="email">
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="exampleMessage" class="bmd-label-floating">Tu Mensaje</label>
-                <textarea type="email" class="form-control" rows="4" id="exampleMessage"></textarea>
-              </div>
               <div class="row">
                 <div class="col-md-4 ml-auto mr-auto text-center">
-                  <button class="btn btn-primary btn-raised"> Enviar Consulta </button>
+                  <button class="btn btn-primary btn-raised"> Iniciar Registro </button>
                 </div>
               </div>
             </form>

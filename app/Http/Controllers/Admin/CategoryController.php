@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use File;
 
 class CategoryController extends Controller
 {
@@ -26,9 +27,22 @@ class CategoryController extends Controller
     {
   		$this->validate($request, Category::$rules, Category::$messages);
     	//Registrar  en la DB
-    	Category::create($request->all());  //Mass assigment (asignacion masiva)
+    	// Category::create($request->all());  //Mass assigment (asignacion masiva)
+        $category = Category::create($request->only('name', 'description'));
 
-		// Redireccionamos una vez realizado el insert 
+        if ($request->hasFile('image')){
+        $file = $request->file('image');
+        $path = public_path().'/images/categories';
+        $filename = uniqid(). '-' .$file->getClientOriginalName();
+        $moved = $file->move($path, $filename);
+            if ($moved) {
+                $category->image = $filename;
+                $category->save(); // UPDATE
+                }
+
+        }
+
+    	// Redireccionamos una vez realizado el insert 
 		return redirect('admin/categories');
 
     }
@@ -41,7 +55,28 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
   		$this->validate($request, Category::$rules, Category::$messages);
-		$category->update($request->all()); //UPDATE
+		// $category->update($request->all()); //UPDATE
+
+        $category->update($request->only('name', 'description'));
+        if ($request->hasFile('image')){
+        $file = $request->file('image');
+        $path = public_path().'/images/categories';
+        $filename = uniqid(). '-' .$file->getClientOriginalName();
+        $moved = $file->move($path, $filename);
+            if ($moved) {
+                $previousPath = $path.'/'.$category->image;
+
+                $category->image = $filename;
+                $saved = $category->save(); // UPDATE
+
+                if ($saved)
+                    File::delete($previousPath);
+
+
+                }
+
+        }
+ 
 		return redirect('admin/categories');
     }
 

@@ -18,10 +18,11 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-lg-2 text-center">ID</th>
-                        <th class="col-lg-3 text-center">Nombre</th>
-                        <th class="col-lg-4 text-center">Descripción</th>
-                        <th class="col-lg-3 text-center">Opciones</th>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Descripción</th>
+                        <th class="text-center">Imagen</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,9 @@
                         <td class="text-center">{{ $key+1 }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
+                        <td>
+                          <img src="{{ $category->featured_image_url }}" height="40">
+                        </td>
                         <td class="td-actions text-center">
                             <form method="post" action="{{ url('/admin/categories/'.$category->id) }}">
                               @csrf

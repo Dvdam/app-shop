@@ -30,15 +30,14 @@
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="material-icons">mail</i>
+                      <i class="material-icons">how_to_reg</i>
                     </span>
                   </div>
-                  <!-- <input type="email" class="form-control" placeholder="Email..."> -->
-                  <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                  <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
-                @if ($errors->has('email'))
+                @if ($errors->has('username'))
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('username') }}</strong>
                     </span>
                 @endif
 

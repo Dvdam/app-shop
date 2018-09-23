@@ -23,7 +23,7 @@
 
         @endif
         <!-- Termina la directiva de validacion -->
-        <form method="post" action="{{ url('/admin/categories/'.$category->id.'/edit') }}">
+        <form method="post" action="{{ url('/admin/categories/'.$category->id.'/edit') }}" enctype="multipart/form-data">
            @csrf
            <div class="row">
               <div class="col-sm-6">
@@ -32,8 +32,18 @@
                   <input type="text" class="form-control" name="name" value="{{ old('name' , $category->name) }}">
                 </div>
               </div>
+              <div class="col-sm-6">
+                  <label class="control-label">Imagen de la Categoría</label><br>
+                  <input type="file" name="image">
+                  @if ($category->image)
+                <p class="help-block">Subir sólo si desea reemplazar la imagen Actual
+                  <a href="{{ asset('/images/categories/'.$category->image) }}" target="_blank" >Ver Imagen Actual</a>
+                </p>
+                @endif
+              </div>
+
            </div>
-          <textarea class="form-control" placeholder="Descripción de la Categoría" rows="5" name="description">{{ old('description' , $category->description) }}</textarea>
+         <textarea class="form-control" placeholder="Descripción de la Categoría" rows="5" name="description">{{ old('description' , $category->description) }}</textarea>
           <button class="btn btn-primary">Guardar Cambios</button>
           <a href="{{ url('/admin/categories') }}" class="btn btn-default">Cancelar</a>
         </form>

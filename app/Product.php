@@ -22,11 +22,12 @@ class Product extends Model
         $featuredImage = $this->images()->where('featured', true)->first();
         if (!$featuredImage)
             $featuredImage = $this->images()->first();
+
         if ($featuredImage){
             return $featuredImage->url;
         }
         //Si no existe ninguna imagen mostrmos la imgen por default
-        return '/images/products/default.png';
+        return '/images/default.png';
     }
     
     public function getCategoryNameAttribute()

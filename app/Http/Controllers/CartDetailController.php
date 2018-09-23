@@ -8,7 +8,12 @@ use App\CartDetail;
 
 class CartDetailController extends Controller
 {
-    //
+    //Realizamos un construcotr para hacer uso del middleware al usar el carrito de compras
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     // public function store(Request $request)
     // {
     // 	$cartDetail = new CartDetail();

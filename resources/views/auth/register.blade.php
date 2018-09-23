@@ -8,6 +8,21 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
+
+            <!-- Directiva para mostrar los errores de validacion -->
+            @if ($errors->any())
+              <div class="alert alert-danger" role="alert">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+                
+              </div>
+
+            @endif
+            <!-- Termina la directiva de validacion -->
+
             <form method="POST" action="{{ route('register') }}">
                         @csrf
               <div class="card-header card-header-primary text-center">
@@ -33,7 +48,7 @@
                     </span>
                   </div>
                   <!-- <input type="text" class="form-control" placeholder="Nombre"> -->
-                    <input id="name" placeholder="Nombre" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" placeholder="Nombre" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name', $name) }}" required autofocus>
 
                     @if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
@@ -41,6 +56,17 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">how_to_reg</i>
+                    </span>
+                  </div>
+                     <input id="username" placeholder="Username" type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                </div>
+
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -48,7 +74,7 @@
                     </span>
                   </div>
                   <!-- <input type="email" class="form-control" placeholder="Email..."> -->
-                  <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                  <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', $email) }}">
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
@@ -56,6 +82,25 @@
                     </span>
                 @endif
                 </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">call</i>
+                    </span>
+                  </div>
+                  <input id="phone" type="phone" placeholder="Teléfono" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">place</i>
+                    </span>
+                  </div>
+                  <input id="address" type="text" placeholder="Dirección" class="form-control" name="address" value="{{ old('address') }}" required>
+                </div>
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
