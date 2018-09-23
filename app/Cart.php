@@ -12,6 +12,7 @@ class Cart extends Model
     	// Como un crrito tendra muchos detalles decimos
     	return $this->hasMany(CartDetail::class);
     }
+    
     public function getTotalAttribute()
     {
     	$total = 0;

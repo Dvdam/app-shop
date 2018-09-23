@@ -23,6 +23,13 @@ Route::get('/', 'TestController@welcome');
 // });
 Auth::routes();
 
+// Ruta para el buscador del home
+Route::get('/search', 'SearchController@show');
+// Ruta para mostrar las sugerencias en el buscador del home
+Route::get('/products/json', 'SearchController@data');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 // Ruta para mostrar la pgaina de los productos
 Route::get('/products/{id}', 'ProductController@show');
@@ -38,6 +45,8 @@ Route::delete('/cart', 'CartDetailController@destroy');
 
 // Ruta para agregar el carrito
 Route::post('/order', 'CartController@update');
+
+
 
 
 // Mis rutas para realiar los CRUD

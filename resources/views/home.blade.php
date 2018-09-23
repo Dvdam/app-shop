@@ -84,7 +84,7 @@
         </table>
         <hr>
         <p class="tab-content tab-space">
-              El Total de tu Compra es de:
+              <strong>El total del Pedido es de: {{ auth()->user()->cart->total }} $</strong>
         </p>
         <hr>
         <form method="post" action="{{ url('/order')}}">

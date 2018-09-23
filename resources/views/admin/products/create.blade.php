@@ -51,7 +51,7 @@
               <div class="col-sm-6">
               <div class="form-group bmd-form-group text-left">
                 <label class="control-label">Categoría del Producto</label>
-                <select class="selectpicker" name="category_id" data-style="btn btn-primary btn-round">
+                <select class="form-control selectpicker" name="category_id" data-style="btn btn-link">
                   <option value="0">General</option>
                   @foreach ($categories as $category)
                   <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -60,6 +60,7 @@
 
               </div>
               </div>
+
            </div>
           <textarea class="form-control" placeholder="Descripción Completa del Producto" rows="5" name="long_description">{{ old('description')}}</textarea>
           <button class="btn btn-primary">Agregar Producto</button>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Bienvenido a App Shop by Laravel')
+@section('title', 'Bienvenido a ' . config('app.name'))
 
 @section('body-class','landing-page sidebar-collapse')
 
@@ -9,7 +9,7 @@
   .team .row .col-md-4{margin-bottom:1em;}
 
   /*PAra evitar problamas de altura con boostrap hacemos lo sgte*/
-  .row{
+  .team .row{
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -17,13 +17,55 @@
     flex-wrap: wrap;
   }
 
-  .row > [class*='col-']{
+  .team .row > [class*='col-']{
     display:flex;
     flex-direction: column;
   }
 
 
   /*Termina solucion de altura*/
+  /*Estilos para el buscador avanzado*/
+  .tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
+
+  .tt-hint {
+    color: #999
+  }
+
+  .tt-menu {    /* used to be tt-dropdown-menu in older versions */
+    width: 222px;
+    margin-top: 4px;
+    padding: 4px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+
+  .tt-suggestion {
+    padding: 3px 20px;
+    line-height: 24px;
+  }
+
+  .tt-suggestion.tt-cursor,.tt-suggestion:hover {
+    color: #fff;
+    background-color: rgb(156, 39, 176);
+
+  }
+
+  .tt-suggestion p {
+    margin: 0;
+  }
+
+  /*Terminan estilos del buscador avanzado*/
 
 
 </style>
@@ -37,7 +79,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1 class="title">App Shop by Laravel</h1>
+          <h1 class="title">{{ config('app.name') }}</h1>
           <h4>Realiza tus pedidos en línea y te contactaremos para coordinar la Entrega</h4>
           <br>
           <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
@@ -88,7 +130,18 @@
         </div>
       </div>
       <div class="section text-center">
-        <h2 class="title">Visia Nuestra Colección de Categorías</h2>
+        <h2 class="title">Conocé Nuestra Colección de Categorías</h2>
+
+        <form class="form-inline" method="get" action="{{ url('/search') }}" >
+            <input type="text" class="form-control" placeholder="¿Qué producto buscas?" name="buscador" id="buscador">
+            <button class="btn btn-primary btn-fab btn-fab-mini btn-round" type="submit">
+              <i class="material-icons">search</i>
+            </button>
+        </form>
+
+
+
+
         <div class="team">
           <div class="row">
             @foreach ($categories as $category)
@@ -150,5 +203,32 @@
     </div>
   </div>
 @include('includes.footer')
+@endsection
 
+@section('scripts')
+  <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
+  <script>
+    $(function(){
+      // Llamamos al datassets
+      var products = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch:'{{ url("/products/json") }}'
+
+      });
+
+      // Inicializamos Typeahead sobre nuestro input de busqueda con id buscador Le pasamos dos objetos
+      $('#buscador').typeahead({
+        hint:true,
+        highlight:true,
+        minLength: 1
+
+      }, {
+        name: 'products',
+        source: products
+
+      });
+
+    });
+  </script>
 @endsection
