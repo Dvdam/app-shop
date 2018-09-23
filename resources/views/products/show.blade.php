@@ -37,10 +37,15 @@
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
             <div class="text-center">
+              @if (auth()->check())
                 <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
                   <i class="material-icons">add</i> Añadir al Carrito de Compras
                 </button>
-
+              @else
+                <a href="{{ url('/login?redirect_to='.url()->current()) }}" class="btn btn-primary btn-round">
+                  <i class="material-icons">add</i> Añadir al Carrito de Compras
+                </a>
+              @endif
             </div>
           </div>
         </div>
