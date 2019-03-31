@@ -8,10 +8,16 @@ use App\User;
 use App\Mail\NewOrder;
 use Mail;
 
+// use App\Cart;
+
 class CartController extends Controller
 {
-    //Definimos el metodo update para reallizar los pedidos
+    public function __construct()
+    {
+        $this->middleware('auth');
 
+    }
+    //Definimos el metodo update para reallizar los pedidos
 	public function update()
 	{
 		$client = auth()->user();
@@ -25,6 +31,7 @@ class CartController extends Controller
 
     	$notification =  'Tu pedido se ha registrado correctamente. Te contactaremos pronto vía Email.';
     	return back()->with(compact('notification'));
-	}
-    
+    }
+
+
 }

@@ -11,7 +11,7 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
-    
+
     // Metodo up
     public function up()
     {
@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             // Si quiero que reciba valores nulos se lo debo especificar
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->softDeletes();
             // Terminan mis columnas
             $table->timestamps();
         });

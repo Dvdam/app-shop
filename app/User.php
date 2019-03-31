@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','address','username'
+        'name', 'email', 'password', 'phone', 'address', 'username'
     ];
 
     /**
@@ -36,28 +36,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
-    
 
 
-    // // DEfinimos un acceso para el campo cart_id 
-    // public function getCartIdAttribute()
-    // {
-    //     // Buscamos el carito que este activo
-    //     $cart = $this->carts()->where('status','Active')->first();
-    //     // Si existe alguna concidencia
-    //     if ($cart)
-    //         return $cart->id;
-
-    //     // Si el usuario no tiene ninngun carrito activo, le creamos uno
-
-    //     // else
-    //     $cart = new Cart();
-    //     $cart->status = 'Active';
-    //     $cart->user_id = $this->id;
-    //     $cart->save();
-
-    //     return $cart->id;
-    // }
     // DEfinimos un acceso para el campo cart Activo
     public function getCartAttribute()
     {
@@ -76,6 +56,9 @@ class User extends Authenticatable
         $cart->save();
 
         return $cart;
+        // return $cart->id;
+
     }
+
 
 }

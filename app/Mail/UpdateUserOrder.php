@@ -10,25 +10,25 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 use App\Cart;
 
-class NewOrder extends Mailable
+class UpdateUserOrder extends Mailable
 {
     use Queueable, SerializesModels;
-
     // Creamos los atribuots publicos para acceder en el mail
     public $user;
     public $cart;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, Cart $cart)
-    {
-        //
-        $this->user = $user;
-        $this->cart = $cart;
-    }
+     public function __construct(User $user, Cart $cart)
+     {
+         //
+         $this->user = $user;
+         $this->cart = $cart;
+     }
 
     /**
      * Build the message.
@@ -37,6 +37,7 @@ class NewOrder extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.new-order')->subject('Tenemos un Nuevo Pedido en nuestra Tienda');
+        // return $this->view('view.name');
+        return $this->view('emails.user-order')->subject('Tu Pedido fue Actualizado');
     }
 }

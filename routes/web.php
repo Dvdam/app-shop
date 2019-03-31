@@ -11,16 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // HAcemos uso de nuestro controlador creado
-Route::get('/', 'TestController@welcome');
+// Route::get('/', 'TestController@welcome');
 
-// Route::get('/prueba', function () {
-//     return ('Soy una Pruebanga en Laravel 5.7');
-// });
 Auth::routes();
 
 // Ruta para el buscador del home
@@ -30,7 +23,7 @@ Route::get('/products/json', 'SearchController@data');
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 // Ruta para mostrar la pgaina de los productos
 Route::get('/products/{id}', 'ProductController@show');
 
@@ -38,7 +31,7 @@ Route::get('/products/{id}', 'ProductController@show');
 Route::get('/categories/{category}', 'CategoryController@show');
 
 
-// Definimos la ruta para el carrito de compras 
+// Definimos la ruta para el carrito de compras
 Route::post('/cart', 'CartDetailController@store');
 // Ruta para eliminar los productos del carrito
 Route::delete('/cart', 'CartDetailController@destroy');
@@ -46,62 +39,53 @@ Route::delete('/cart', 'CartDetailController@destroy');
 // Ruta para agregar el carrito
 Route::post('/order', 'CartController@update');
 
+// Ruta para Mostrar el Carrito pedido por el usuario
+Route::get('/dashboard', 'UsersOrders@index');
+Route::get('/order/{id}', 'UsersOrders@show');
 
 
-
-// Mis rutas para realiar los CRUD
-// PEticiones GET para consultar info - Leer info
-// Peticiones POST cuando queremos REgistrar, Actualizar informacion - Influir info
-// 
-// Los Metodos index, create, y store son usados por varios framwwork pro convenccion
-// Index devolvera un listado
-// Create devolvera un formulario 
-// Store Guardara los datos que el usuario gaurda en el formulario
-
-// CR 
-// Route::get('/admin/products', 'ProductController@index'); // Mostrar, el listado de los productos-.
-// Route::get('/admin/products/create', 'ProductController@create'); // Mostrara un formulario para Crear Nuevos productos
-// Route::post('/admin/products', 'ProductController@store'); // Permitira  registrar los datos cargados en el formulario
-
-// // Rutas Neuvas
-// Route::get('/admin/products/{id}/edit', 'ProductController@edit'); // Formulario de Edición
-// Route::post('/admin/products/{id}/edit', 'ProductController@update'); // Actualizar los Datos
+Route::get('/home', function(){return Redirect::to('/dashboard');});
+Route::get('/cart', function(){return Redirect::to('/dashboard');});
+Route::get('/order', function(){return Redirect::to('/dashboard');});
 
 
-// // En laravle se usa el motodo post para eliminar
-// // Route::get('/admin/products/{id}/delete', 'ProductController@destroy'); // Formulario para Eliminar
-// // Route::post('/admin/products/{id}/delete', 'ProductController@destroy'); // Formulario para Eliminar
+// Auth::routes();
 
-// // Usando el verbo delete
-// Route::delete('/admin/products/{id}', 'ProductController@destroy'); // Formulario para Eliminar
-// 
-// 
-// Usamos el middleware para validar la autentificacion
-// 
 
-// Route::middleware(['auth' , 'admin'])->prefix('admin')->group(function(){
 Route::middleware(['auth' , 'admin'])->prefix('admin')->namespace('Admin')->group(function(){
-Route::get('/products', 'ProductController@index'); // Mostrar, el listado de los productos-.
-Route::get('/products/create', 'ProductController@create'); // Mostrara un formulario para Crear Nuevos productos
-Route::post('/products', 'ProductController@store'); // Permitira  registrar los datos cargados en el formulario
-Route::get('/products/{id}/edit', 'ProductController@edit'); // Formulario de Edición
-Route::post('/products/{id}/edit', 'ProductController@update'); // Actualizar los Datos
-Route::delete('/products/{id}', 'ProductController@destroy'); // Formulario para Eliminar
+	Route::get('/products', 'ProductController@index'); // Mostrar, el listado de los productos
+	Route::get('/products/create', 'ProductController@create'); // Mostrara un formulario para Crear Nuevos productos
+	Route::post('/products', 'ProductController@store'); // Permitira  registrar los datos cargados en el formulario
+	Route::get('/products/{id}/edit', 'ProductController@edit'); // Formulario de Edición
+	Route::post('/products/{id}/edit', 'ProductController@update'); // Actualizar los Datos
+    Route::delete('/products/{id}', 'ProductController@destroy'); // Formulario para Eliminar
 
-// Rutas para gestionar el control de las Imagenes 
-Route::get('/products/{id}/images', 'ImageController@index'); // Listado
-Route::post('/products/{id}/images', 'ImageController@store'); // Registrar
-Route::delete('/products/{id}/images' ,'ImageController@destroy'); // Formulario para Eliminar
-// Ruta para destacar imagen del producto 
-Route::get('/products/{id}/images/select/{image}' ,'ImageController@select'); // Seleccionar Iamgen Destacada
+	// Rutas para gestionar el control de las Imagenes
+	Route::get('/products/{id}/images', 'ImageController@index'); // Listado
+	Route::post('/products/{id}/images', 'ImageController@store'); // Registrar
+	Route::delete('/products/{id}/images' ,'ImageController@destroy'); // Formulario para Eliminar
+	// Ruta para destacar imagen del producto
+	Route::get('/products/{id}/images/select/{image}' ,'ImageController@select'); // Seleccionar Iamgen Destacada
 
-// Creamos las rutas para administrar las categorias
-Route::get('/categories', 'CategoryController@index'); // Mostrar, el listado de los productos-.
-Route::get('/categories/create', 'CategoryController@create'); // Mostrara un formulario para Crear Nuevos productos
-Route::post('/categories', 'CategoryController@store'); // Permitira  registrar los datos cargados en el formulario
-Route::get('/categories/{category}/edit', 'CategoryController@edit'); // Formulario de Edición
-Route::post('/categories/{category}/edit', 'CategoryController@update'); // Actualizar los Datos
-Route::delete('/categories/{category}', 'CategoryController@destroy'); // Formulario para Eliminar
+	// Creamos las rutas para administrar las categorias
+	Route::get('/categories', 'CategoryController@index'); // Mostrar, el listado de los productos-.
+	Route::get('/categories/create', 'CategoryController@create'); // Mostrara un formulario para Crear Nuevos productos
+	Route::post('/categories', 'CategoryController@store'); // Permitira  registrar los datos cargados en el formulario
+	Route::get('/categories/{category}/edit', 'CategoryController@edit'); // Formulario de Edición
+	Route::post('/categories/{category}/edit', 'CategoryController@update'); // Actualizar los Datos
+    Route::delete('/categories/{category}', 'CategoryController@destroy'); // Formulario para Eliminar
+	// Route::delete('/categories/{id}', 'CategoryController@destroy'); // Formulario para Eliminar
+
+
+	// Creamos las rutas para administrar los carritos Solicitados
+    Route::get('/orders', 'OrdersController@index'); // Mostrar, el listado de los pedidos Pendientes.
+    Route::get('/orders/confirmed', 'OrdersController@confirmed'); // Mostrar, el listado de los pedidos Confiramdos.
+    Route::get('/orders/canceled', 'OrdersController@canceled'); // Mostrar, el listado de los pedidos Cancelados.
+    // Route::delete('/orders/{id}', 'OrdersController@destroy'); // Formulario para Eliminar
+    Route::get('/orders/{id}', 'OrdersController@show'); // Ver el Pedido
+    Route::get('/orders/{id}/edit', 'OrdersController@edit'); // Formulario de Edición
+    Route::post('/orders/{id}/edit', 'OrdersController@update'); // Actualizar los Datos
+
 
 });
 

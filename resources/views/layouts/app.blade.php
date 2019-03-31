@@ -66,10 +66,11 @@
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
+                  <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
                   @if (auth()->user()->admin)
                   <a class="dropdown-item" href="{{ url('admin/categories') }}">Gestionar Categorías</a>
                   <a class="dropdown-item" href="{{ url('admin/products') }}">Gestionar Productos</a>
+                  <a class="dropdown-item" href="{{ url('admin/orders') }}">Gestionar Pedidos</a>
                   @endif
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
@@ -83,23 +84,6 @@
               </div>
           </li>
       @endguest
-
-
-<!--           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-              <i class="fa fa-facebook-square"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-              <i class="fa fa-instagram"></i>
-            </a>
-          </li> -->
         </ul>
       </div>
     </div>

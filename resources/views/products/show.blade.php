@@ -107,13 +107,13 @@
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
           <div class="modal-body">
-            <input type="number" name="quantity" value="1" class="form-control">
+            <input type="number" name="quantity" value="1" class="form-control" min="1" pattern="^[0-9]+">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
           </div>
-          
+
       </form>
     </div>
   </div>

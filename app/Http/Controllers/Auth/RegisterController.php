@@ -30,7 +30,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
+
+
+
 
     /**
      * Create a new controller instance.
@@ -72,7 +75,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'] ?: '',
-            'password' => Hash::make($data['password']),
+            // 'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
             'phone' => $data['phone'],
             'address' => $data['address'],
             'username' => $data['username'],
@@ -86,4 +90,6 @@ class RegisterController extends Controller
         $email = $request->input('email');
         return view('auth.register')->with(compact('name', 'email'));
     }
+
+
 }

@@ -13,17 +13,6 @@
                         @csrf
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Inicio de Sesión</h4>
-<!--                 <div class="social-line">
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-facebook-square"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </div> -->
               </div>
               <p class="description text-center">Ingresa tus Datos</p>
               <div class="card-body">
@@ -72,7 +61,7 @@
             <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                 {{ __('Forgot Your Password?') }}
             </a> -->
-              
+
             </form>
           </div>
         </div>

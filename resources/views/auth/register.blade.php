@@ -17,27 +17,15 @@
                   <li>{{ $error }}</li>
                   @endforeach
                 </ul>
-                
+
               </div>
 
             @endif
             <!-- Termina la directiva de validacion -->
-
             <form method="POST" action="{{ route('register') }}">
                         @csrf
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Registrate</h4>
-  <!--               <div class="social-line">
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-facebook-square"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-just-icon btn-link">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </div> -->
               </div>
               <p class="description text-center">Completa tus Datos</p>
               <div class="card-body">
@@ -47,9 +35,7 @@
                       <i class="material-icons">face</i>
                     </span>
                   </div>
-                  <!-- <input type="text" class="form-control" placeholder="Nombre"> -->
                     <input id="name" placeholder="Nombre" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name', $name) }}" required autofocus>
-
                     @if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -73,9 +59,7 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <!-- <input type="email" class="form-control" placeholder="Email..."> -->
                   <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', $email) }}">
-
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -107,7 +91,6 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <!-- <input type="password" class="form-control" placeholder="Password..."> -->
                   <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                 </div>
 
@@ -117,7 +100,6 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <!-- <input type="password" class="form-control" placeholder="Password..."> -->
                   <input id="password-confirm" type="password" placeholder="Confirmar Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password_confirmation" required>
                 </div>
                 <br>
@@ -129,7 +111,7 @@
             <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                 {{ __('Forgot Your Password?') }}
             </a> -->
-              
+
             </form>
           </div>
         </div>

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    // $product->category
     public function category()
     {
-    	return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
+        // return $this->belongsTo(Category::class)->where('deleted_at', '=', NULL);
     }
     // $product->images
     public function images()
@@ -29,7 +29,7 @@ class Product extends Model
         //Si no existe ninguna imagen mostrmos la imgen por default
         return '/images/default.png';
     }
-    
+
     public function getCategoryNameAttribute()
     {
         if ($this->category)

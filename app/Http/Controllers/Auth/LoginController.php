@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -53,10 +53,10 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
-        
-        if (session()->has('redirect_to'))
-            return session()->pull('redirect_to');
 
+        if (session()->has('redirect_to')){
+            return session()->pull('redirect_to');
+        }
         return $this->redirectTo;
     }
 }

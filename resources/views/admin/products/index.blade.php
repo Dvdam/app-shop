@@ -27,6 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($products as $product)
                     <tr>
                         <td class="text-center">{{ $product->id }}</td>
@@ -36,23 +37,27 @@
                         <td class="text-center">$ {{ $product->price }}</td>
                         <td class="td-actions text-center">
                             <form method="post" action="{{ url('/admin/products/'.$product->id) }}">
-                              @method('DELETE')
-                              @csrf
-                              <a class="btn btn-info btn-fab btn-fab-mini btn-round" href="{{ url('/products/'.$product->id)}}" target="_blank" rel="tooltip" title="Ver Producto">
+                            @method('DELETE')
+                            @csrf
+                            <a class="btn btn-info btn-fab btn-fab-mini btn-round" href="{{ url('/products/'.$product->id)}}" target="_blank" rel="tooltip" title="Ver Producto">
                                 <i class="material-icons">info</i>
-                              </a>
+                            </a>
 
-                              <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                            <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-fab btn-fab-mini btn-round">
                                 <i class="material-icons">edit</i>
-                              </a>
-                              <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del Producto" class="btn btn-warning btn-fab btn-fab-mini btn-round">
+                            </a>
+                            <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del Producto" class="btn btn-warning btn-fab btn-fab-mini btn-round">
                                 <i class="material-icons">image</i>
-                              </a>
-                              <button type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round" rel="tooltip" title="Eliminar">
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round" rel="tooltip" title="Eliminar">
                                 <i class="material-icons">close</i>
-                              </button>
+                            </button>
+                            {{-- <a type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round" rel="tooltip" title="Eliminar">
+                                <i class="material-icons">close</i>
+                            </a> --}}
                             </form>
                         </td>
+
                     </tr>
                     @endforeach
 

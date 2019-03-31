@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use App\Product;
+use App\ProductImage;
+use App\CartDetail;
+
 use File;
 
 class CategoryController extends Controller
@@ -17,12 +21,12 @@ class CategoryController extends Controller
     	$categories = Category::orderBy('name')->paginate(10);
     	return view('admin.categories.index')->with(compact('categories')); // Devuelve una vista del  listado de Categorias
     }
-    
+
     public function create()
     {
     	return view('admin.categories.create'); // Devuelve una vista del formulario de Registro
     }
-    
+
     public function store(Request $request)
     {
   		$this->validate($request, Category::$rules, Category::$messages);
@@ -42,16 +46,16 @@ class CategoryController extends Controller
 
         }
 
-    	// Redireccionamos una vez realizado el insert 
+    	// Redireccionamos una vez realizado el insert
 		return redirect('admin/categories');
 
     }
+
     public function edit(Category $category)
     {
-    	// return "Mostrar aquí el Form de Edición para el producto con id $id";
-    	// $category = Category::find($id);
     	return view('admin.categories.edit')->with(compact('category'));
     }
+
     public function update(Request $request, Category $category)
     {
   		$this->validate($request, Category::$rules, Category::$messages);
@@ -76,16 +80,22 @@ class CategoryController extends Controller
                 }
 
         }
- 
+
 		return redirect('admin/categories');
     }
 
     public function destroy(Category $category)
     {
-		$category->delete(); //DELETE
-		return back();
-
+        if($category->products->count() > 0){
+            $notification_error =  'La categoría NO puede ser Eliminada porque tiene productos Asociados, por favor elimina todos los productos de esta categoría antes de ELIMINARLA';
+            return back()->with(compact('notification_error'));
+        }
+        $category->delete(); //DELETE
+        $notification =  'La categoría fue Eliminada Exitosamente';
+        return back()->with(compact('notification'));
     }
+
+
 
 
 }

@@ -2,11 +2,23 @@
 
 namespace App;
 
+use App\Product;
+
+// use Iatstuti\Database\Support\CascadeSoftDeletes;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    
+    use SoftDeletes;
+    // use SoftDeletes, CascadeSoftDeletes;
+
+    // protected $cascadeDeletes = ['products'];
+    protected $dates = ['deleted_at'];
+
+
+
 	// Los mensajes y las reglas de validación las Traemos desde el controldor y las pasamos aca al modelo
     	//Validar los Datos - Mensajes de error - Agregando delante de los mensajes PUBLIC STATIC
 	public static $messages =[
@@ -21,14 +33,17 @@ class Category extends Model
 	];
 
     // PAra la importacion masiva de datos, osea crear categorias en la base de datos (mass asigmment)
-	protected $fillable = ['name','description'];
+	protected $fillable = ['name','description', 'deleted_at'];
     // PAra la importacion masiva de datos, osea crear categorias en la base de datos (mass asigmment)
 
     // $category->products
     public function products()
     {
-    	return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class);
+
     }
+
+
 
 // Mostramos la imagen destacada del primer producto de la categria
     public function getFeaturedImageUrlAttribute()

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Product;
@@ -19,10 +19,10 @@ class ImageController extends Controller
 		// Agreamos una condicion mas para ordenar las imagenes en base a la imagen destacada
 		// $images = $product->images;
 		$images = $product->images()->orderBy('featured', 'desc')->get();
-		// devuleve una vista 
+		// devuleve una vista
 		return view('admin.products.images.index')->with(compact('product', 'images'));
 
-	}   
+	}
 	public function store(Request $request, $id)
 	{
 		// Vamos a Guardar la IMg en nuestro proyecto
@@ -44,7 +44,7 @@ class ImageController extends Controller
 
 		// Una vez que se subio todo redirigimos al usaurio donde antes se encontraba
 		return back();
-		
+
 
 	}
 	public function destroy(Request $request, $id)
@@ -65,8 +65,8 @@ class ImageController extends Controller
 		}
 		// Una vez que se subio todo redirigimos al usaurio donde antes se encontraba
 		return back();
-		
-		
+
+
 
 	}
 

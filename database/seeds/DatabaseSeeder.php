@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // Descomentamos la linea que venia por default para hacer uso de nuestro seeder
+
         $this->call(UsersTableSeeder::class);
+
         $this->call(ProductsTableSeeder::class);
     }
 }

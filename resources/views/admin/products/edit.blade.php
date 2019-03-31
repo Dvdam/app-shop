@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Bienvenido a App Shop by Laravel')
+@section('title', 'Bienvenido a ' . config('app.name'))
 
 @section('body-class','profile-page sidebar-collapse')
 
@@ -18,7 +18,7 @@
               <li>{{ $error }}</li>
               @endforeach
             </ul>
-            
+
           </div>
 
         @endif
@@ -52,7 +52,7 @@
                 <select class="form-control selectpicker" name="category_id" data-style="btn btn-link">
                   <option value="0">General</option>
                   @foreach ($categories as $category)
-                  <option value="{{ $category->id }}" 
+                  <option value="{{ $category->id }}"
                     @if($category->id == old('category->id', $product->category_id)) selected @endif>
                     {{ $category->name }}</option>
                   @endforeach

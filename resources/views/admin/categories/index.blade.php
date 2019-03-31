@@ -12,6 +12,15 @@
     <div class="container">
       <div class="section text-center">
         <h2 class="title">Listado de Categorías</h2>
+        @if (session('notification'))
+        <div class="alert alert-success" role="alert">
+            {{ session('notification') }}
+        </div>
+        @elseif((session('notification_error')))
+        <div class="alert alert-danger" role="alert">
+            {{ session('notification_error') }}
+        </div>
+        @endif
         <div class="team">
           <div class="row">
             <a style="margin-left: auto; margin-right: auto;margin-bottom: 15px;" href="{{ url('/admin/categories/create') }}" class="btn btn-primary btn-round">Nuevo Categoría</a>

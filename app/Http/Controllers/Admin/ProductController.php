@@ -7,24 +7,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\ProductImage;
+use App\CartDetail;
 
 class ProductController extends Controller
 {
     //Creamos los metodos index, create y store
     public function index()
     {
-    	// $products = Product::all(); //Devuelve todo
-    	$products = Product::paginate(10);
-    	return view('admin.products.index')->with(compact('products')); // Devuelve una vista del  listado de Productos
+        $products = Product::paginate(10);
+        return view('admin.products.index')->with(compact('products')); // Devuelve una vista del  listado de Productos
+
     }
-    
+
+
+
     public function create()
     {
-    	// Treamos todas las caterogiras desde la base de datos 
+    	// Treamos todas las caterogiras desde la base de datos
         $categories = Category::orderBy('name') ->get();
         return view('admin.products.create')->with(compact('categories')); // Devuelve una vista del formulario de Registro
     }
-    
+
     public function store(Request $request)
     {
     	//Validar los Datos
@@ -61,7 +65,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
 		$product->save(); //Hacemos el insert
 
-		// Redireccionamos una vez realizado el insert 
+		// Redireccionamos una vez realizado el insert
 		return redirect('admin/products');
 
     }
@@ -73,7 +77,7 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id)
     {
-  		
+
     	//Validar los Datos
     	//Mensajes de error
     	$messages =[
@@ -103,19 +107,22 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
 		$product->save(); //UPDATE
 
-		// Redireccionamos una vez realizado el insert 
+		// Redireccionamos una vez realizado el insert
 		return redirect('admin/products');
 
     }
 
     public function destroy($id)
     {
-  		$product = Product::find($id);
-		$product->delete(); //UPDATE
 
-		// Redireccionamos una vez realizado el insert 
-		// return redirect('admin/products');
-		return back();
-
+    //Emilinar CartDetail porque estaba relacionada
+    CartDetail::where('product_id', $id)->delete();
+    //eliminar ProductImage por que estaba relacionada
+    ProductImage::where('product_id', $id)->delete();
+    //eliminar producto
+    $product = Product::find($id);
+    $product->delete();//eliminar
+    return back();
     }
+
 }

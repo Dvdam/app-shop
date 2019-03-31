@@ -93,7 +93,7 @@
       <div class="section text-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title">¡Por qué App Shop</h2>
+            <h2 class="title">¡Por qué {{ config('app.name') }}</h2>
             <h5 class="description">Podes revisar toda nuestra Colección de productos, comparar precios y realizar tus pedidos cuando estés seguro.</h5>
           </div>
         </div>

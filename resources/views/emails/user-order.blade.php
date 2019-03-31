@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Nuevo Pedido</title>
+	<title>Pedido Actualizado</title>
 </head>
 <body>
-	<p>Se ha realizado un nuevo pedido!</p>
-	<p>Estos son los datos del cliente que realizó el pedido:</p>
+	<p>Tu pedido ha sido actualizado!</p>
+	<p>Estos son los datos de tu pedido realizado:</p>
 	<ul>
 		<li>
-			<strong>Nombre:</strong>
+			<strong>Solicitado por:</strong>
 			{{ $user->name }}
-		</li>
+        </li>
 		<li>
-			<strong>E-mail:</strong>
+                <strong>Status del Pedido:</strong>
+                {{ $cart->status }}
+            </li>
+		<li>
+			<strong>Tu E-mail:</strong>
 			{{ $user->email }}
 		</li>
 		<li>
@@ -33,7 +37,7 @@
 	<hr>
 	<p><strong>Importe Total Cantidad Total a Pagar: $ </strong>{{ $cart->total }}</p>
 	<p>
-		<a href="{{ url('admin/orders/'.$cart->id) }}">Hace Click acá</a>
+		<a href="{{ url('order/'.$cart->id) }}">Hace Click acá</a>
 		Para ver más información de tu pedido.
 	</p>
 
